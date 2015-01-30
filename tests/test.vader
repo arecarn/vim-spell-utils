@@ -1,0 +1,10 @@
+Before:
+  set spell
+Given:
+  dext
+  Text
+Do:
+  ji\<C-s>dang
+Expect:
+  Text
+  dangText

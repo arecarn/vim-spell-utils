@@ -28,21 +28,13 @@ function! s:InsertSpellCorrection(direction)
             let lenDifference = abs(lenDifference)
             execute "normal! ". lenDifference ."l"
         endif
-
-        call feedkeys("a")
     else
         echohl WarningMsg | echo "spelling no enabled" | echohl None
     endif
 endfunction
 
-inoremap <silent> <Plug>(insert-spell-correction-backward) <Esc>:<C-u>call <SID>InsertSpellCorrection('backward')<Cr>
+inoremap <silent> <Plug>(insert-spell-correction-backward) <C-o>:<C-u>call <SID>InsertSpellCorrection('backward')<Cr>
 imap <C-s> <Plug>(insert-spell-correction-backward)
 
-inoremap <silent> <Plug>(insert-spell-correction-forward) <Esc>:<C-u>call <SID>InsertSpellCorrection('forward')<Cr>
+inoremap <silent> <Plug>(insert-spell-correction-forward) <C-o>:<C-u>call <SID>InsertSpellCorrection('forward')<Cr>
 imap <C-l> <Plug>(insert-spell-correction-forward)
-
-
-"problem
-" press i <c-s>  on the first character of line 2 (end up on the second character)
-"1. hex
-"2.
