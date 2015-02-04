@@ -93,12 +93,12 @@ endfunction
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-inoremap <silent> <Plug>(insert-spell-correction-forward)  <C-o>:<C-u>call <SID>InsertSpellCorrection('forward')<Cr>
-inoremap <silent> <Plug>(insert-spell-correction-backward) <C-o>:<C-u>call <SID>InsertSpellCorrection('backward')<Cr>
-nnoremap <silent> <Plug>(normal-spell-correction-forward)  :<C-u>call <SID>NormalSpellCorrection('forward')<Cr>
-nnoremap <silent> <Plug>(normal-spell-correction-backward) :<C-u>call <SID>NormalSpellCorrection('backward')<Cr>
+inoremap <silent> <Plug>(insert-spell-fix-forward)  <C-o>:<C-u>call <SID>InsertSpellCorrection('forward')<Cr>
+inoremap <silent> <Plug>(insert-spell-fix-backward) <C-o>:<C-u>call <SID>InsertSpellCorrection('backward')<Cr>
+nnoremap <silent> <Plug>(normal-spell-fix-forward)  :<C-u>call <SID>NormalSpellCorrection('forward')<Cr>
+nnoremap <silent> <Plug>(normal-spell-fix-backward) :<C-u>call <SID>NormalSpellCorrection('backward')<Cr>
 
-imap <C-k> <Plug>(insert-spell-correction-forward)
-imap <C-s> <Plug>(insert-spell-correction-backward)
-nmap <C-k> <Plug>(normal-spell-correction-forward)
-nmap <C-s> <Plug>(normal-spell-correction-backward)
+imap <C-k> <Plug>(insert-spell-fix-forward)
+imap <C-s> <Plug>(insert-spell-fix-backward)
+nmap <C-k> <Plug>(normal-spell-fix-forward)
+nmap <C-s> <Plug>(normal-spell-fix-backward)
