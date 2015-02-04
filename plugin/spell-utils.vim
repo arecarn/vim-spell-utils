@@ -79,6 +79,7 @@ function! s:PrintSpellingWarningMsg()
 endfunction
 
 
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 function! s:NormalSpellCorrection(direction)
@@ -93,14 +94,11 @@ endfunction
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 inoremap <silent> <Plug>(insert-spell-correction-forward)  <C-o>:<C-u>call <SID>InsertSpellCorrection('forward')<Cr>
-imap <C-k> <Plug>(insert-spell-correction-forward)
-
 inoremap <silent> <Plug>(insert-spell-correction-backward) <C-o>:<C-u>call <SID>InsertSpellCorrection('backward')<Cr>
-imap <C-s> <Plug>(insert-spell-correction-backward)
-
-
-nnoremap <silent> <Plug>(normal-spell-correction-backward) :<C-u>call <SID>NormalSpellCorrection('backward')<Cr>
-nmap <C-s> <Plug>(normal-spell-correction-backward)
-
 nnoremap <silent> <Plug>(normal-spell-correction-forward)  :<C-u>call <SID>NormalSpellCorrection('forward')<Cr>
+nnoremap <silent> <Plug>(normal-spell-correction-backward) :<C-u>call <SID>NormalSpellCorrection('backward')<Cr>
+
+imap <C-k> <Plug>(insert-spell-correction-forward)
+imap <C-s> <Plug>(insert-spell-correction-backward)
 nmap <C-k> <Plug>(normal-spell-correction-forward)
+nmap <C-s> <Plug>(normal-spell-correction-backward)
