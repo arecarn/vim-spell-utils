@@ -96,6 +96,7 @@ function! s:NormalSpellCorrection(direction) "{{{
     if &spell
         call s:GoToBadWord(a:direction)
         sleep 300m
+        redraw
         call s:FixSpelling()
     else
         call s:PrintSpellingWarningMsg()
