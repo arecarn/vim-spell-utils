@@ -1,14 +1,14 @@
 "TODO use spellbadword() to detect if you are currently on a bad word
+
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-function! s:InsertSpellCorrection(direction) "{{{
-    """
-    """
+function! spellutils#InsertCorrection(direction) abort "{{{2
     if &spell
 
         let colPos = getpos(".")[2]
         let oldLen = len(getline('.'))
 
-        let motion = s:ReturnSpellOperator(a:direction)
+        let motion = s:ReturnOperator(a:direction)
 
         call s:GoToBadWord(a:direction)
         sleep 50m
@@ -32,12 +32,20 @@ function! s:InsertSpellCorrection(direction) "{{{
     endif
 endfunction "}}}
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+function! spellutils#NormalCorrection(direction) abort "{{{2
+    if &spell
+        call s:GoToBadWord(a:direction)
+        sleep 300m
+        redraw
+        call s:FixSpelling()
+    else
+        call s:PrintSpellingWarningMsg()
+    endif
+endfunction "}}}2
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-function! s:ReturnSpellOperator(direction) "{{{
-    """
-    """
-
+function! s:ReturnOperator(direction) abort "{{{2
     if a:direction ==# 'forward'
         return ']s'
     elseif a:direction ==# 'backward'
@@ -48,14 +56,12 @@ function! s:ReturnSpellOperator(direction) "{{{
 endfunction "}}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-function! s:GoToBadWord(direction) abort "{{{
-    """
+function! s:GoToBadWord(direction) abort abort "{{{2
     " call spellbadword()
     " if moved backward we where on a bad word
     " if we didn't move and returned a bad word we were already
     " if we didn't move and didn't return a bad word
     " if moved forward we moved to a new word
-    """
 
     " let winpos = winsaveview()
     " let col = col('.')
@@ -66,53 +72,19 @@ function! s:GoToBadWord(direction) abort "{{{
     "     if col
     " endif
 
-    execute "normal! ".s:ReturnSpellOperator(a:direction)
-
+    execute "normal! ".s:ReturnOperator(a:direction)
 endfunction "}}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-function! s:FixSpelling() abort "{{{
-    """
-    """
-
+function! s:FixSpelling() abort abort "{{{2
     normal! 1z=
 endfunction "}}}
 
-
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-function! s:PrintSpellingWarningMsg() "{{{
-    """
-    """
-
+function! s:PrintSpellingWarningMsg() abort "{{{2
     echohl WarningMsg | echo "spelling not enabled" | echohl None
 endfunction "}}}
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-function! s:NormalSpellCorrection(direction) "{{{
-    """
-    """
-
-    if &spell
-        call s:GoToBadWord(a:direction)
-        sleep 300m
-        redraw
-        call s:FixSpelling()
-    else
-        call s:PrintSpellingWarningMsg()
-    endif
-endfunction "}}}
-
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-inoremap <silent> <Plug>(insert-spell-fix-forward)  <C-o>:<C-u>call <SID>InsertSpellCorrection('forward')<Cr>
-inoremap <silent> <Plug>(insert-spell-fix-backward) <C-o>:<C-u>call <SID>InsertSpellCorrection('backward')<Cr>
-nnoremap <silent> <Plug>(normal-spell-fix-forward)  :<C-u>call <SID>NormalSpellCorrection('forward')<Cr>
-nnoremap <silent> <Plug>(normal-spell-fix-backward) :<C-u>call <SID>NormalSpellCorrection('backward')<Cr>
-
-imap <C-k> <Plug>(insert-spell-fix-forward)
-imap <C-s> <Plug>(insert-spell-fix-backward)
-nmap <C-k> <Plug>(normal-spell-fix-forward)
-nmap <C-s> <Plug>(normal-spell-fix-backward)
-
 " vim:foldmethod=marker
