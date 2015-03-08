@@ -1,0 +1,51 @@
+Before:
+  set spell
+Given:
+  Derp
+  Deep
+Do:
+  ji\<C-j>*
+Expect(Cursor returns to the correct location going up a line BACKWARD):
+  Deep
+  *Deep
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+Before:
+  set spell
+Given:
+  Deepp derp derp
+Do:
+  wi\<C-j>*
+Expect(Cursor returns to the correct location going BACKWARD):
+  Deep *derp derp
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+Before:
+  set spell
+Given:
+  Deepppp azzzzz
+Do:
+  wi\<C-j>*
+Expect(Cursor returns to the correct location going BACKWARD):
+  Deep *azzzzz
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+Before:
+  set spell
+Given:
+  Deeppp azzzzz
+Do:
+  wi\<C-j>*
+Expect(Cursor returns to the correct location going BACKWARD):
+  Deep *azzzzz
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+Before:
+  set spell
+Given:
+  Deepp azzzzz
+Do:
+  wi\<C-j>*
+Expect(Cursor returns to the correct location going BACKWARD):
+  Deep *azzzzz

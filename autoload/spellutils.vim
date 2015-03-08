@@ -1,51 +1,81 @@
-"TODO use spellbadword() to detect if you are currently on a bad word
-
-
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-function! spellutils#InsertCorrection(direction) abort "{{{2
+" Original Author: Ryan Carney
+" License: WTFPL
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" BOILER PLATE {{{
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let s:save_cpo = &cpo
+set cpo&vim
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
+
+
+" PUBLIC FUNCTIONS {{{
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""{{{
+function! spellutils#insert_correction(direction) abort "{{{2
     if &spell
 
-        let colPos = getpos(".")[2]
-        let oldLen = len(getline('.'))
+        let column_position = col('.')
+        let line_length =  col('$') - 1
 
-        let motion = s:ReturnOperator(a:direction)
+        call s:go_to_bad_word(a:direction)
 
-        call s:GoToBadWord(a:direction)
         sleep 50m
-        call s:FixSpelling()
+        call s:fix_spelling()
+        normal! gi
         sleep 50m
-        normal gi
 
-        let newLen = len(getline('.'))
+        call s:go_to_old_position(column_position, line_length, a:direction)
 
-        let lenDifference = oldLen - newLen
-        if oldLen > newLen
-            if oldLen != colPos
-                execute "normal! ". lenDifference ."h"
-            endif
-        elseif newLen > oldLen
-            let lenDifference = abs(lenDifference)
-            execute "normal! ". lenDifference ."l"
-        endif
     else
-        call s:PrintSpellingWarningMsg()
-    endif
-endfunction "}}}
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-function! spellutils#NormalCorrection(direction) abort "{{{2
-    if &spell
-        call s:GoToBadWord(a:direction)
-        sleep 300m
-        redraw
-        call s:FixSpelling()
-    else
-        call s:PrintSpellingWarningMsg()
+        call s:print_spelling_warning_msg()
     endif
 endfunction "}}}2
 
+
+function! spellutils#normal_correction(direction) abort "{{{2
+    if &spell
+        call s:go_to_bad_word(a:direction)
+        sleep 300m
+        redraw
+        call s:fix_spelling()
+    else
+        call s:print_spelling_warning_msg()
+    endif
+endfunction "}}}2
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
+
+
+" PRIVATE FUNCTIONS {{{
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-function! s:ReturnOperator(direction) abort "{{{2
+
+function! s:go_to_old_position(old_column_position, old_line_length, fix_direction) abort "{{{2
+
+    if a:old_column_position == 1
+        return
+    endif
+
+    let line_length = col('$') - 1
+    let length_difference = a:old_line_length - line_length
+
+    if a:fix_direction ==# 'forward' || length_difference == 0
+        normal! l
+
+    elseif a:fix_direction ==# 'backward'
+        if line_length < a:old_line_length
+            if length_difference > 1
+                let length_difference = length_difference  -1
+                execute 'normal! ' . length_difference . 'h'
+            endif
+
+        elseif line_length > a:old_line_length
+            execute 'normal! ' abs(length_difference) + 1 . 'l'
+        endif
+    endif
+
+endfunction "}}}2
+
+function! s:return_operator(direction) abort "{{{2
     if a:direction ==# 'forward'
         return ']s'
     elseif a:direction ==# 'backward'
@@ -53,10 +83,10 @@ function! s:ReturnOperator(direction) abort "{{{2
     else
         throw "Must use 'forward' or 'backward' as argument"
     endif
-endfunction "}}}
+endfunction "}}}2
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-function! s:GoToBadWord(direction) abort abort "{{{2
+
+function! s:go_to_bad_word(direction) abort abort "{{{2
     " call spellbadword()
     " if moved backward we where on a bad word
     " if we didn't move and returned a bad word we were already
@@ -72,19 +102,24 @@ function! s:GoToBadWord(direction) abort abort "{{{2
     "     if col
     " endif
 
-    execute "normal! ".s:ReturnOperator(a:direction)
-endfunction "}}}
+    execute "normal! ".s:return_operator(a:direction)
+endfunction "}}}2
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-function! s:FixSpelling() abort abort "{{{2
+
+function! s:fix_spelling() abort "{{{2
     normal! 1z=
-endfunction "}}}
+endfunction "}}}2
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-function! s:PrintSpellingWarningMsg() abort "{{{2
+
+function! s:print_spelling_warning_msg() abort "{{{2
     echohl WarningMsg | echo "spelling not enabled" | echohl None
-endfunction "}}}
+endfunction "}}}2
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
 
 
+" BOILER PLATE {{{
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let &cpo = s:save_cpo
+unlet s:save_cpo
 " vim:foldmethod=marker
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}

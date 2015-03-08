@@ -1,0 +1,8 @@
+Before:
+  set spell
+Given:
+  Thiz ies a mispelled centance
+Do:
+  \<C-j>
+Expect (Word under the cursor is spelled correctly):
+  Thiz ies a mispelled centance
