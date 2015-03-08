@@ -18,7 +18,7 @@ function! spellutils#insert_correction(direction) abort "{{{2
         let column_position = col('.')
         let line_length =  col('$') - 1
 
-        call s:go_to_bad_word(a:direction)
+        call s:go_to_bad_word(a:direction, 0)
 
         sleep 50m
         call s:fix_spelling()
@@ -35,7 +35,7 @@ endfunction "}}}2
 
 function! spellutils#normal_correction(direction) abort "{{{2
     if &spell
-        call s:go_to_bad_word(a:direction)
+        call s:go_to_bad_word(a:direction, 1)
         sleep 300m
         redraw
         call s:fix_spelling()
@@ -48,7 +48,6 @@ endfunction "}}}2
 
 " PRIVATE FUNCTIONS {{{
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
 function! s:go_to_old_position(old_column_position, old_line_length, fix_direction) abort "{{{2
 
     if a:old_column_position == 1
@@ -75,6 +74,7 @@ function! s:go_to_old_position(old_column_position, old_line_length, fix_directi
 
 endfunction "}}}2
 
+
 function! s:return_operator(direction) abort "{{{2
     if a:direction ==# 'forward'
         return ']s'
@@ -85,24 +85,34 @@ function! s:return_operator(direction) abort "{{{2
     endif
 endfunction "}}}2
 
+function! s:is_on_bad_word() abort "{{{2
+    let return_value = 1
+    let window_posotion = winsaveview()
+    let column = col('.')
 
-function! s:go_to_bad_word(direction) abort abort "{{{2
-    " call spellbadword()
-    " if moved backward we where on a bad word
-    " if we didn't move and returned a bad word we were already
-    " if we didn't move and didn't return a bad word
-    " if moved forward we moved to a new word
+    if spellbadword() == ['','']
+        let return_value = 0
+    endif
 
-    " let winpos = winsaveview()
-    " let col = col('.')
-    " let line = line('.')
+    if col('.') > column
+        let return_value = 0
+    endif
 
-    " if spellbadword() != ['', '']
-    " else
-    "     if col
-    " endif
+    call winrestview(window_posotion)
+    return return_value
+endfunction "}}}2
 
-    execute "normal! ".s:return_operator(a:direction)
+
+function! s:go_to_bad_word(direction, include_word_under_cursor) abort "{{{2
+
+    if a:include_word_under_cursor
+        if !s:is_on_bad_word()
+            execute "normal! ".s:return_operator(a:direction)
+        endif
+    else
+        execute "normal! ".s:return_operator(a:direction)
+    endif
+
 endfunction "}}}2
 
 
