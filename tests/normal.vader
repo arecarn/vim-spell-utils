@@ -5,4 +5,4 @@ Given:
 Do:
   \<C-j>
 Expect (Word under the cursor is spelled correctly):
-  Thiz ies a mispelled centance
+  This ies a mispelled centance
