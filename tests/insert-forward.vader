@@ -1,0 +1,40 @@
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+Before:
+  set spell
+Given:
+  deepp derp derp
+Do:
+  wi\<C-k>*
+Expect(Cursor returns to the correct location going FORWARD):
+  deepp *derp deep
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+Before:
+  set spell
+Given:
+  deepp deepppp
+Do:
+  ei\<C-k>*
+Expect(Cursor returns to the correct location going FORWARD):
+  deep*p deep
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+Before:
+  set spell
+Given:
+  deepp deeppp
+Do:
+  ei\<C-k>*
+Expect(Cursor returns to the correct location going FORWARD):
+  deep*p deep
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+Before:
+  set spell
+Given:
+  deepp deepp
+Do:
+  ei\<C-k>*
+Expect(Cursor returns to the correct location going FORWARD):
+  deep*p deep
