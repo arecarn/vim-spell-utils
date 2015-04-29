@@ -18,7 +18,7 @@ endif
 " MAPPINGS {{{
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 inoremap <silent> <Plug>(insert-spell-fix-forward) 
-            \ <C-o>:<C-u>call spellutils#insert_correction('forward')<CR>
+            \ <C-g>u<C-o>:<C-u>call spellutils#insert_correction('forward')<CR>
 if !hasmapto('<Plug>(insert-spell-fix-forward)')
     imap <C-k> <Plug>(insert-spell-fix-forward)
 endif
@@ -30,7 +30,7 @@ if !hasmapto('<Plug>(normal-spell-fix-forward)')
 endif
 
 inoremap <silent> <Plug>(insert-spell-fix-backward) 
-            \ <C-o>:<C-u>call spellutils#insert_correction('backward')<CR>
+            \ <C-g>u<C-o>:<C-u>call spellutils#insert_correction('backward')<CR>
 if !hasmapto('<Plug>(insert-spell-fix-backward)')
     imap <C-j> <Plug>(insert-spell-fix-backward)
 endif
