@@ -1,0 +1,62 @@
+*spell-utils*           Easier Ways to Fix Spelling in Vim
+
+                        Spell Utils    By Ryan Carney~
+
+                                                             *spell-utils.txt*
+
+Description ........................................ |spell-utils-description|
+Usage .............................................. |spell-utils-usage|
+Configuration ...................................... |spell-utils-configuration|
+
+==============================================================================
+DESCRIPTION                                          *spell-utils-description*
+
+Ever misspell a word while typing, but don't want to exit insert mode to break
+your train of though. Well this plugin is an attempt to try to solve this
+problem. You can correct your misspellings with the single press of <C-s>, and
+your cursor will then return to it's old position back into insert mode.
+
+In addition to this there are also some other mappings this plugin provides to
+make correcting spelling corrections even easier. like [gs & ]gs
+
+==============================================================================
+USAGE                                                     *spell-utils-usage*
+
+                                                *i_CTRL-S*
+i_CTRL-S                Correct next misspelling forward with 1st suggestion
+                        then return to old position
+                        Plug mapping: `<Plug>(insert-spell-fix-forward)`
+
+                                                *i_CTRL-L*
+i_CTRL-L                Correct next misspelling backward with 1st suggestion 
+                        then return to old position
+                        Plug mapping: `<Plug>(insert-spell-fix-backward)`
+
+                                                *[gs*
+[gs                     Correct next spelling mistake forward using first
+                        suggestion
+                        Plug mapping: `<Plug>(normal-spell-fix-forward)`
+
+                                                *]gs*
+]g                      Correct next spelling mistake backward using first
+                        suggestion
+                        Plug mapping: `<Plug>(normal-spell-fix-backward)`
+
+==============================================================================
+CONFIGURATION                                      *spell-utils-configuration*
+
+Example an alternate configuration:~
+
+imap <leader>l <Plug>(insert-spell-fix-forward)
+imap <leader>h <Plug>(insert-spell-fix-backward)
+nmap <leader>l <Plug>(normal-spell-fix-forward)
+nmap <leader>h <Plug>(normal-spell-fix-backward)
+
+------------------------------------------------------------------------------
+g:spell_utils_default_mapping~
+
+If unset disables the default mappings.
+
+default value: 1
+
+vim:tw=78:ts=8:ft=help:norl:fdm=manual:
