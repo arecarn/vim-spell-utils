@@ -3,6 +3,6 @@ Before:
 Given:
   Thiz ies a mispelled centance
 Do:
-  \<C-j>
+  ]gs
 Expect (Word under the cursor is spelled correctly):
   This ies a mispelled centance

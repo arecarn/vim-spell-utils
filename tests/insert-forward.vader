@@ -4,7 +4,7 @@ Before:
 Given:
   deepp derp derp
 Do:
-  wi\<C-k>*
+  wi\<C-l>*
 Expect(Cursor returns to the correct location going FORWARD):
   deepp *derp deep
 
@@ -15,7 +15,7 @@ Before:
 Given:
   deepp deepppp
 Do:
-  ei\<C-k>*
+  ei\<C-l>*
 Expect(Cursor returns to the correct location going FORWARD):
   deep*p deep
 
@@ -25,7 +25,7 @@ Before:
 Given:
   deepp deeppp
 Do:
-  ei\<C-k>*
+  ei\<C-l>*
 Expect(Cursor returns to the correct location going FORWARD):
   deep*p deep
 
@@ -35,6 +35,6 @@ Before:
 Given:
   deepp deepp
 Do:
-  ei\<C-k>*
+  ei\<C-l>*
 Expect(Cursor returns to the correct location going FORWARD):
   deep*p deep

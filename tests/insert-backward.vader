@@ -4,7 +4,7 @@ Given:
   Derp
   Deep
 Do:
-  ji\<C-j>*
+  ji\<C-s>*
 Expect(Cursor returns to the correct location going up a line BACKWARD):
   Deep
   *Deep
@@ -15,7 +15,7 @@ Before:
 Given:
   Deepp derp derp
 Do:
-  wi\<C-j>*
+  wi\<C-s>*
 Expect(Cursor returns to the correct location going BACKWARD):
   Deep *derp derp
 
@@ -26,7 +26,7 @@ Before:
 Given:
   Deepppp azzzzz
 Do:
-  wi\<C-j>*
+  wi\<C-s>*
 Expect(Cursor returns to the correct location going BACKWARD):
   Deep *azzzzz
 
@@ -36,7 +36,7 @@ Before:
 Given:
   Deeppp azzzzz
 Do:
-  wi\<C-j>*
+  wi\<C-s>*
 Expect(Cursor returns to the correct location going BACKWARD):
   Deep *azzzzz
 
@@ -46,6 +46,6 @@ Before:
 Given:
   Deepp azzzzz
 Do:
-  wi\<C-j>*
+  wi\<C-s>*
 Expect(Cursor returns to the correct location going BACKWARD):
   Deep *azzzzz
