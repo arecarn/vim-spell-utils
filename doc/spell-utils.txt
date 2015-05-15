@@ -13,7 +13,7 @@ DESCRIPTION                                          *spell-utils-description*
 
 Ever misspell a word while typing, but don't want to exit insert mode to break
 your train of though. Well this plugin is an attempt to try to solve this
-problem. You can correct your misspellings with the single press of <C-s>, and
+problem. You can correct your misspellings with the single press of <C-a>, and
 your cursor will then return to it's old position back into insert mode.
 
 In addition to this there are also some other mappings this plugin provides to
@@ -22,8 +22,8 @@ make correcting spelling corrections even easier. like [gs & ]gs
 ==============================================================================
 USAGE                                                     *spell-utils-usage*
 
-                                                *i_CTRL-S*
-i_CTRL-S                Correct next misspelling forward with 1st suggestion
+                                                *i_CTRL-A*
+i_CTRL-A                Correct next misspelling forward with 1st suggestion
                         then return to old position
                         Plug mapping: `<Plug>(insert-spell-fix-forward)`
 
