@@ -1,3 +1,6 @@
+![demo](https://cloud.githubusercontent.com/assets/2142684/7647220/cf454026-fa85-11e4-8d9a-4c754b9f394b.gif)
+
+
 Usage
 -----
 | Mode   | Default Key | `<Plug>` map                               | Description                                                                       |
