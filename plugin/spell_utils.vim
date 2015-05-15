@@ -39,7 +39,7 @@ call s:do_map(
 
 call s:do_map(
             \ "insert-spell-fix-backward",
-            \ "\<C-s>",
+            \ "\<C-a>",
             \ "\<C-g>u\<C-o>:\<C-u>call spellutils#insert_correction('backward')\<CR>",
             \ "i",
             \ g:spell_utils_default_mapping,
