@@ -12,7 +12,7 @@ set cpo&vim
 
 " PUBLIC FUNCTIONS {{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""{{{
-function! spellutils#insert_correction(direction) abort "{{{2
+function! spell_utils#insert_correction(direction) abort "{{{2
     if &spell
 
         let column_position = col('.')
@@ -33,7 +33,7 @@ function! spellutils#insert_correction(direction) abort "{{{2
 endfunction "}}}2
 
 
-function! spellutils#normal_correction(direction) abort "{{{2
+function! spell_utils#normal_correction(direction) abort "{{{2
     if &spell
         call s:go_to_bad_word(a:direction, 1)
         sleep 300m
