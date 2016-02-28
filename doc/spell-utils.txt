@@ -1,15 +1,18 @@
-*spell-utils*           Easier Ways to Fix Spelling in Vim
+*spell-utils* easier ways to fix spelling in vim
 
-                        Spell Utils    By Ryan Carney~
-
-                                                             *spell-utils.txt*
+                                 spell-utils~
 
 Description ........................................ |spell-utils-description|
+    Requirements ................................... |spell-utils-requirements|
 Usage .............................................. |spell-utils-usage|
+    Key Mappings ................................... |spell-utils-key-mappings|
 Configuration ...................................... |spell-utils-configuration|
+    Variables ...................................... |spell-utils-variables|
+
+                                                               *spell-utils.txt*
 
 ==============================================================================
-DESCRIPTION                                          *spell-utils-description*
+DESCRIPTION                                            *spell-utils-description*
 
 Ever misspell a word while typing, but don't want to exit insert mode to break
 your train of though. Well this plugin is an attempt to try to solve this
@@ -19,16 +22,24 @@ your cursor will then return to it's old position back into insert mode.
 In addition to this there are also some other mappings this plugin provides to
 make correcting spelling corrections even easier. like [gs & ]gs
 
+------------------------------------------------------------------------------
+REQUIREMENTS                                          *spell-utils-requirements*
+
+* |vim-repeat| https://github.com/tpope/vim-repeat
+
 ==============================================================================
-USAGE                                                     *spell-utils-usage*
+USAGE                                                        *spell-utils-usage*
+
+------------------------------------------------------------------------------
+KEY MAPPINGS                                          *spell-utils-key-mappings*
 
                                                 *i_CTRL-A*
-i_CTRL-A                Correct next misspelling forward with 1st suggestion
+CTRL-A                  Correct next misspelling forward with 1st suggestion
                         then return to old position
                         Plug mapping: `<Plug>(insert-spell-fix-forward)`
 
                                                 *i_CTRL-L*
-i_CTRL-L                Correct next misspelling backward with 1st suggestion 
+CTRL-L                  Correct next misspelling backward with 1st suggestion
                         then return to old position
                         Plug mapping: `<Plug>(insert-spell-fix-backward)`
 
@@ -43,20 +54,23 @@ i_CTRL-L                Correct next misspelling backward with 1st suggestion
                         Plug mapping: `<Plug>(normal-spell-fix-backward)`
 
 ==============================================================================
-CONFIGURATION                                      *spell-utils-configuration*
-
-Example an alternate configuration:~
-
-imap <leader>l <Plug>(insert-spell-fix-forward)
-imap <leader>h <Plug>(insert-spell-fix-backward)
-nmap <leader>l <Plug>(normal-spell-fix-forward)
-nmap <leader>h <Plug>(normal-spell-fix-backward)
+CONFIGURATION                                        *spell-utils-configuration*
 
 ------------------------------------------------------------------------------
-g:spell_utils_default_mapping~
+VARIABLES                                                *spell-utils-variables*
 
-If unset disables the default mappings.
+                                                *g:template_default_mapping*
+g:spell_utils_default_mapping
+                        If set to 0 disables the default mappings
+                        (default: 1)
 
-default value: 1
+                        Example of alternate mappings: >
 
+                        let g:spell_utils_default_mapping = 0
+                        imap <leader>l <Plug>(insert-spell-fix-forward)
+                        imap <leader>h <Plug>(insert-spell-fix-backward)
+                        nmap <leader>l <Plug>(normal-spell-fix-forward)
+                        nmap <leader>h <Plug>(normal-spell-fix-backward)
+<
+==============================================================================
 vim:tw=78:ts=8:ft=help:norl:fdm=manual:
