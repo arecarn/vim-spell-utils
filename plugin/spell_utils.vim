@@ -7,7 +7,7 @@
 let s:save_cpo = &cpo
 set cpo&vim
 
-if exists("g:loaded_spell_utils")
+if exists('g:loaded_spell_utils')
     finish
 else
     let g:loaded_spell_utils = 1
@@ -30,34 +30,34 @@ function! s:do_map(name, lhs, rhs, mode, default_option) abort "{{{2
 endfunction "}}}2
 
 call s:do_map(
-            \ "insert-spell-fix-forward",
+            \ 'insert-spell-fix-forward',
             \ "\<C-l>",
             \ "\<C-g>u\<C-o>:\<C-u>call spell_utils#insert_correction('forward')\<CR>",
-            \ "i",
+            \ 'i',
             \ g:spell_utils_default_mapping,
             \ )
 
 call s:do_map(
-            \ "insert-spell-fix-backward",
+            \ 'insert-spell-fix-backward',
             \ "\<C-a>",
             \ "\<C-g>u\<C-o>:\<C-u>call spell_utils#insert_correction('backward')\<CR>",
-            \ "i",
+            \ 'i',
             \ g:spell_utils_default_mapping,
             \ )
 
 call s:do_map(
-            \ "normal-spell-fix-forward",
-            \ "]gs",
+            \ 'normal-spell-fix-forward',
+            \ ']gs',
             \ ":\<C-u>call spell_utils#normal_correction('forward')\<CR>",
-            \ "n",
+            \ 'n',
             \ g:spell_utils_default_mapping,
             \ )
 
 call s:do_map(
-            \ "normal-spell-fix-backward",
-            \ "[gs",
+            \ 'normal-spell-fix-backward',
+            \ '[gs',
             \ ":\<C-u>call spell_utils#normal_correction('backward')\<CR>",
-            \ "n",
+            \ 'n',
             \ g:spell_utils_default_mapping,
             \ )
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}

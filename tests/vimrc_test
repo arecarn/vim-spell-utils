@@ -1,18 +1,17 @@
-set nocompatible
+let s:is_windows = has('win16') || has('win32') || has('win64')
 
-let s:hasWindows = has("win16") || has("win32") || has("win64")
-if s:hasWindows
-    let s:vimpath = $HOME."/vimfiles"
-    cd $HOME "start in home directory, this is just here for convince
+if s:is_windows
+    let s:vim_path = $HOME . '/vimfiles'
 else
-    let s:vimpath = $HOME."/.vim"
+    let s:vim_path = $HOME . '/.vim'
 endif
 
 filetype off
 
-execute "set rtp+=".s:vimpath."/bundle/vader.vim"
-execute "set rtp+=".s:vimpath."/bundle/spell-utils.vim"
-set rtp+=.
+execute 'set runtimepath+=' . s:vim_path . '/bundle/vader.vim'
+execute 'set runtimepath+=' . s:vim_path . '/bundle/selection.vim'
+execute 'set runtimepath+=' . s:vim_path . '/bundle/spell-utils.vim'
+set runtimepath+=.
 
 filetype plugin indent on
 syntax enable

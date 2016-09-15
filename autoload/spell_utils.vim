@@ -107,10 +107,10 @@ function! s:go_to_bad_word(direction, include_word_under_cursor) abort "{{{2
 
     if a:include_word_under_cursor
         if !s:is_on_bad_word()
-            execute "normal! ".s:return_operator(a:direction)
+            execute 'normal! '.s:return_operator(a:direction)
         endif
     else
-        execute "normal! ".s:return_operator(a:direction)
+        execute 'normal! '.s:return_operator(a:direction)
     endif
 
 endfunction "}}}2
@@ -122,7 +122,7 @@ endfunction "}}}2
 
 
 function! s:print_spelling_warning_msg() abort "{{{2
-    echohl WarningMsg | echo "spelling not enabled" | echohl None
+    echohl WarningMsg | echo 'spelling not enabled' | echohl None
 endfunction "}}}2
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
 
