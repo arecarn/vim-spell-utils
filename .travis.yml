@@ -1,4 +1,8 @@
+---
 language: vim
+
+python:
+  - "3.5"
 
 install:
   - pip install --requirement requirements.txt
