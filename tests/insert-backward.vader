@@ -13,7 +13,7 @@ Expect(Cursor returns to the correct location going up a line BACKWARD):
 Before:
   set spell
 Given:
-  Deepp derp derp
+  Deeep derp derp
 Do:
   wi\<C-a>*
 Expect(Cursor returns to the correct location going BACKWARD):
@@ -24,7 +24,7 @@ Expect(Cursor returns to the correct location going BACKWARD):
 Before:
   set spell
 Given:
-  Deepppp azzzzz
+  Deeeeep azzzzz
 Do:
   wi\<C-a>*
 Expect(Cursor returns to the correct location going BACKWARD):
@@ -34,7 +34,7 @@ Expect(Cursor returns to the correct location going BACKWARD):
 Before:
   set spell
 Given:
-  Deeppp azzzzz
+  Deeeep azzzzz
 Do:
   wi\<C-a>*
 Expect(Cursor returns to the correct location going BACKWARD):
@@ -44,7 +44,7 @@ Expect(Cursor returns to the correct location going BACKWARD):
 Before:
   set spell
 Given:
-  Deepp azzzzz
+  Deeep azzzzz
 Do:
   wi\<C-a>*
 Expect(Cursor returns to the correct location going BACKWARD):
