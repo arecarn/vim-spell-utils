@@ -1,16 +1,10 @@
-let s:is_windows = has('win16') || has('win32') || has('win64')
-
-if s:is_windows
-    let s:vim_path = $HOME . '/vimfiles'
-else
-    let s:vim_path = $HOME . '/.vim'
-endif
+set nocompatible
 
 filetype off
 
-execute 'set runtimepath+=' . s:vim_path . '/bundle/vader.vim'
-execute 'set runtimepath+=' . s:vim_path . '/bundle/selection.vim'
-execute 'set runtimepath+=' . s:vim_path . '/bundle/spell-utils.vim'
+set runtimepath+=build/vader.vim
+set runtimepath+=build/selection.vim
+set runtimepath+=build/spell-utils.vim
 set runtimepath+=.
 
 filetype plugin indent on

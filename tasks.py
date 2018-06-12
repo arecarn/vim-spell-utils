@@ -1,5 +1,5 @@
 """
-Project Tasks that can be invoked using using the program "invoke" or "inv"
+Project Tasks that can be invoked using using the program "invoke" or "in"
 """
 
 import os
@@ -11,7 +11,13 @@ def setup(ctx):
     """
     Install python requirements
     """
-    ctx.run('python3 -m pip install --requirement requirements.txt')
+    ctx.run('pip install --requirement requirements.txt')
+    try:
+        os.mkdir('build')
+    except FileExistsError:
+        pass
+    ctx.run('git clone https://github.com/junegunn/vader.vim.git build/vader.vim || true')
+
 
 @task
 def clean(ctx):
@@ -19,6 +25,7 @@ def clean(ctx):
     Clean repository using git
     """
     ctx.run('git clean -x -d')
+
 
 @task
 def lint(ctx):
@@ -35,6 +42,7 @@ def lint(ctx):
     cmd = 'vint {files}'
     ctx.run(cmd.format(files=files_string))
 
+
 @task
 def test(ctx):
     """
@@ -44,6 +52,7 @@ def test(ctx):
 
     cmd = "vim -Nu tests/vimrc_test -c 'Vader! {files}'"
     ctx.run(cmd.format(files=files_string), pty=True)
+
 
 @task(lint, test, default=True)
 def lint(ctx):
